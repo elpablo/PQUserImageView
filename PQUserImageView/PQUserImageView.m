@@ -116,11 +116,7 @@
 {
     if (_ringWidth != ringWidth) {
         [self willChangeValueForKey:@"ringWidth"];
-        if (ringWidth <= 0) {
-            _ringWidth = 1.;
-        } else {
-            _ringWidth = ringWidth;
-        }
+        _ringWidth = (ringWidth <= 0) ? 1. : ringWidth;
         [self didChangeValueForKey:@"ringWidth"];
         [self setNeedsLayout];
     }
