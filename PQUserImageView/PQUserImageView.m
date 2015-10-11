@@ -22,6 +22,8 @@
 
 #import "PQUserImageView.h"
 
+NSString *USER_IMAGE_TAPPED_NOTIFICATION = @"UserImageTappedNotification";
+
 @interface PQUserImageView ()
 
 @property (strong) UIImageView *imageView;
@@ -53,6 +55,9 @@
 
 - (void)setup
 {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(notifyTap)];
+    [self addGestureRecognizer:tap];
+    
     self.imageView = [[UIImageView alloc] init];
     
     [self addSubview:self.imageView];
@@ -88,6 +93,10 @@
     [self.imageView setFrame:self.bounds];
     [self.maskLayer setFrame:[self.imageView.layer bounds]];
     [self.ringLayer setFrame:[self.imageView.layer bounds]];
+}
+
+- (void)notifyTap {
+    [[NSNotificationCenter defaultCenter] postNotificationName:USER_IMAGE_TAPPED_NOTIFICATION object:self];
 }
 
 #pragma mark - Properties

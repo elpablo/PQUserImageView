@@ -22,6 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *USER_IMAGE_TAPPED_NOTIFICATION;
+
 IB_DESIGNABLE
 @interface PQUserImageView : UIView
 
